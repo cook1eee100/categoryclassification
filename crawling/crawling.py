@@ -5,7 +5,7 @@ import os
 from utils import *
 import json
 
-presidentNumber = range(582925, 596504)
+presidentNumber = range(582410, 596504)
 
 if not os.path.isdir('./data'):
     os.mkdir('./data')
@@ -18,7 +18,7 @@ for number in presidentNumber:
     if '비공개된 청원' in Checkpresident[0].get_text():
         print("비공개된 청원", number)
         continue
-
+        
     else:
         PetitionDict = {}
         PetitionsTitle = soup.select(               
@@ -61,4 +61,4 @@ for number in presidentNumber:
         print(number, "국민 청원 Success")
 
 
-        time.sleep(0.7)
+        time.sleep(1.0)

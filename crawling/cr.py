@@ -1,4 +1,4 @@
-from selenium import webdriver
+# from selenium import webdriver
 import time
 import os
 from bs4 import BeautifulSoup
@@ -15,14 +15,12 @@ import re
 # print(a.text)
 
 
-
-# url = requests.get("https://www1.president.go.kr/petitions/400001")
+# headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'}
+# url = requests.get("https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=001&aid=0012276315", headers = headers)
 # soup = BeautifulSoup(url.content, "html.parser")
 
-# s = soup.select('#cont_view > div.cs_area > div.new_contents > div > div.petitionsView_left > div')
-# s1 = soup.select('#cont_view > div.cs_area > div.new_contents > div > div.petitionsView_left > div > div.petitionsView_write > div.View_write')
+# s = soup.select('body')
 # print(s[0].get_text())
-# print(s1[0].get_text().strip())
 
 
 
@@ -46,9 +44,9 @@ import re
 #         continue
 
 
-text='참여인원 : [ 2,447명 ]'
+# text='참여인원 : [ 2,447명 ]'
 
-text = re.findall('\d+', text)
-text = int(''.join(text))
+# text = re.findall('\d+', text)
+# text = int(''.join(text))
 
-print(text+3)
+# print(text+3)
