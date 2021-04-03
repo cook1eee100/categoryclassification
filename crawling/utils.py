@@ -17,3 +17,4 @@ def normalize_number(text):
     text = re.findall('\d+', text)
     text = int(''.join(text))
     return text
+    

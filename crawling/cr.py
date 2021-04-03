@@ -50,3 +50,7 @@ import re
 # text = int(''.join(text))
 
 # print(text+3)
+
+a=3
+
+print(str(a).zfill(2))

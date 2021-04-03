@@ -6,9 +6,11 @@ from utils import *
 import json
 
 presidentNumber = range(582410, 596504)
+path='crawling/data'
 
-if not os.path.isdir('./data'):
-    os.mkdir('./data')
+
+if not os.path.isdir(path):
+    os.mkdir(path)
 
 for number in presidentNumber:
     url = requests.get('https://www1.president.go.kr/petitions/%d' %(number))
@@ -51,7 +53,7 @@ for number in presidentNumber:
 
 
 
-        with open('data/%d.json' % (number), mode='wt', encoding='utf-8') as f:
+        with open(f'{path}/{number}.json', mode='wt', encoding='utf-8') as f:
             json.dump(PetitionDict, f, ensure_ascii=False, indent=2)
 
 
