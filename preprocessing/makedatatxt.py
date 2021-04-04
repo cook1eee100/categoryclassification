@@ -29,6 +29,6 @@ print(len(txtList))
 
 
 
-with open(f'preprocessing/data.txt', 'w', encoding='utf-8') as fp:
+with open(f'preprocessing/dataMerge.txt', 'w', encoding='utf-8') as fp:
     for idx in txtList:
         fp.write(idx+"\n")

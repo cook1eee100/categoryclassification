@@ -1,22 +1,21 @@
 import os
 import json
 
+petitionsPath='preprocessing/petitions'         # 기존 데이터 파일 위치
+dataPath='preprocessing/data'                   # 크롤링 데이터 파일 위치
 
-if not os.path.isdir("preprocessing/petitions"):
-    os.makedirs("preprocessing/petitions")
+if not os.path.isdir(petitionsPath):
+    os.makedirs(petitionsPath)
 
-if not os.path.isdir("preprocessing/data"):
+if not os.path.isdir(dataPath):
     exit()
 
-for i in range(582410, 596504):
-    if not os.path.isfile(f"preprocessing/data/{i}.json"):
-        continue
-
+for fileName in os.listdir(dataPath):
     jsondata=""
-    with open(f"preprocessing/data/{i}.json", encoding='utf-8') as jp:
+    with open(f"{dataPath}/{fileName}", encoding='utf-8') as jp:
         jsondata=str(json.load(jp))
     
-    with open(f"preprocessing/petitions/petitions_26", 'a', encoding='utf-8') as fp:
+    with open(f"{petitionsPath}/petitions_26", 'a', encoding='utf-8') as fp:
         fp.write(jsondata+"\n")
 
     

@@ -29,24 +29,28 @@ for txt in txtList:
 lenArray = np.asarray(lenList)
 df = pd.DataFrame(lenArray)
 
-# 이상치
-zscore_threshold = 1.8          # zscore outliers 임계값
-outliers=df[(np.abs(stats.zscore(df)) > zscore_threshold).all(axis=1)].values.ravel()
+# rangeList 최소값, 1사분위값, 2사분위값, 3사분위값, 최대값, 사용할 데이터 시작, 사용할 데이터 끝
+rangeList=[0,25,50,75,100, 5, 95]
+qValue=np.percentile(df.values.ravel(), rangeList, interpolation='nearest')
 
-# 최소값, 1사분위값, 2사분위값, 3사분위값, 최대값, 사용할 데이터 시작, 사용할 데이터 끝
-rangeList=[0,25,50,75,100,25,75]
-qValue=np.percentile(df[(np.abs(stats.zscore(df)) < zscore_threshold).all(axis=1)].values.ravel(), rangeList, interpolation='nearest')    
 ratio=rangeList[6]-rangeList[5]
 
-plt.boxplot([lenArray], showmeans=True)
-plt.show()
+plt.boxplot(df.values.ravel(), showmeans=True)
+plt.text(1.05, qValue[0], qValue[0])
+plt.text(1.09, qValue[1], qValue[1])
+plt.text(1.09, qValue[2], qValue[2])
+plt.text(1.09, qValue[3], qValue[3])
+plt.text(1.05, qValue[4], qValue[4])
+plt.text(1.15, qValue[5], qValue[5])
+plt.text(1.15, qValue[6], qValue[6])
+plt.show() 
 
 tList=[]
 for line in txtList:
-    if qValue[1]<=len(line)<=qValue[3]:
+    if qValue[5]<=len(line)<=qValue[6]:
         tList.append(line)
 
-print(f"전체 데이터 개수(게시글 수) : {len(txtList)}, 이상치 개수 : {len(outliers)}, 사용 할 데이터 비율 : {ratio}%, 사용 할 데이터 개수 : {len(tList)}")
+print(f"전체 데이터 개수(게시글 수) : {len(txtList)}, 사용 할 데이터 비율 : {ratio}%, 사용 할 데이터 개수 : {len(tList)}")
 
 with open(f'preprocessing/data.txt', 'w', encoding='utf-8') as fp:
     for idx in tList:
