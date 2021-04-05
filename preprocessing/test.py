@@ -1,43 +1,59 @@
-#-*- coding:utf-8 -*-
+# #-*- coding:utf-8 -*-
 
-import os
-import json
-
-
-
-# if not os.path.isdir("preprocessing/datamerge"):
-#     os.makedirs("preprocessing/datamerge")
-
-# if not os.path.isdir("preprocessing/data"):
-#     exit()
+# import os
+# import json
 
 
-# j=1
 
-# for i in range(582410, 596504):
-#     if i%1000==0:
-#         j+=1
-#     if not os.path.isfile(f"preprocessing/data/{i}.json"):
-#         continue
+# # if not os.path.isdir("preprocessing/datamerge"):
+# #     os.makedirs("preprocessing/datamerge")
 
-#     jsondata=""
-#     with open(f"preprocessing/data/{i}.json", encoding='utf-8') as jp:
-#         jsondata=str(json.load(jp))
+# # if not os.path.isdir("preprocessing/data"):
+# #     exit()
+
+
+# # j=1
+
+# # for i in range(582410, 596504):
+# #     if i%1000==0:
+# #         j+=1
+# #     if not os.path.isfile(f"preprocessing/data/{i}.json"):
+# #         continue
+
+# #     jsondata=""
+# #     with open(f"preprocessing/data/{i}.json", encoding='utf-8') as jp:
+# #         jsondata=str(json.load(jp))
     
-#     filenumber = str(j).zfill(2)
-#     with open(f"preprocessing/datamerge/mergefile-{filenumber}", 'a', encoding='utf-8') as fp:
-#         fp.write(jsondata+"\n")
+# #     filenumber = str(j).zfill(2)
+# #     with open(f"preprocessing/datamerge/mergefile-{filenumber}", 'a', encoding='utf-8') as fp:
+# #         fp.write(jsondata+"\n")
 
 
-from ast import literal_eval
-import utils
+# from ast import literal_eval
+# import utils
 
-# x = '{"category": "보건복지", "begin": "2017-08-31", "end": "2017-09-07", "content": "저희아버지 폐암4기로 3년을투병생활하셨습니다 기존표준항암 이제 항암부작용이커서. 더이상은 힘들것같다는의사의말을 들었습니다. 표준항암보다 부작용이 없는 면역항암제 쓰시게 해드리고싶어요 오프라벨에서라도 마지막으로 슬수잇게해주세요 임상실험중이라는데 저희아버진 시간이없어요 승인날대가지 기다릴시간이 없어요 부탁드립니다[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]", "num_agree": 1, "petition_idx": "1198", "status": "청원종료", "title": "오프라벨"}'
-x = '{"category" : "정치개혁", "title" : "●   우리 나라가 생기고 요즘 보다 좋은 때는 없엇다   ●", "content" : "길거리 나가봐라 수입차가 늘비 하고 차가 막혀 앞으로 나갈수가 없이 잘사는데 박정희때 생각 해봐라 길거리 차하나 서 잇으면 뭐 신기 해서 동내 꼬마들 구경 하고 50가구에 자동차는 커능 자전거도 하나 하나 없엇다 박 정희때 수원 삼성 울산 현대 다녀도 월급이 얼마 인지 아느냐 1979년도 수원 삼성 근로자 월급이 85000원 수원 매탄동 방하나 부엌 하나 월세가 3만원 1979년도 공장 다녀서 아들 대학교 맛도 못봤다 요즘 99%가 대학교 출신이다 ~ 박 정때 막걸리 먹다가 대통령 욕하면 막 걸리 보안법에 남산 지하 남영동 지하 껄려 가면 병신 대는거 누구나 다 안다 박정희 새마을 사업 한다고 국민을 강제로 부역 시키고 부역 시킨 인건비 안주나 ~??"}'
-d = literal_eval(x)
-txt = d['category']+'  '+utils.normalize_text(d['title'])+'  '+d['content']
-# if '[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]' in txt:
+# # x = '{"category": "보건복지", "begin": "2017-08-31", "end": "2017-09-07", "content": "저희아버지 폐암4기로 3년을투병생활하셨습니다 기존표준항암 이제 항암부작용이커서. 더이상은 힘들것같다는의사의말을 들었습니다. 표준항암보다 부작용이 없는 면역항암제 쓰시게 해드리고싶어요 오프라벨에서라도 마지막으로 슬수잇게해주세요 임상실험중이라는데 저희아버진 시간이없어요 승인날대가지 기다릴시간이 없어요 부탁드립니다[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]", "num_agree": 1, "petition_idx": "1198", "status": "청원종료", "title": "오프라벨"}'
+# x = '{"category" : "정치개혁", "title" : "●   우리 나라가 생기고 요즘 보다 좋은 때는 없엇다   ●", "content" : "길거리 나가봐라 수입차가 늘비 하고 차가 막혀 앞으로 나갈수가 없이 잘사는데 박정희때 생각 해봐라 길거리 차하나 서 잇으면 뭐 신기 해서 동내 꼬마들 구경 하고 50가구에 자동차는 커능 자전거도 하나 하나 없엇다 박 정희때 수원 삼성 울산 현대 다녀도 월급이 얼마 인지 아느냐 1979년도 수원 삼성 근로자 월급이 85000원 수원 매탄동 방하나 부엌 하나 월세가 3만원 1979년도 공장 다녀서 아들 대학교 맛도 못봤다 요즘 99%가 대학교 출신이다 ~ 박 정때 막걸리 먹다가 대통령 욕하면 막 걸리 보안법에 남산 지하 남영동 지하 껄려 가면 병신 대는거 누구나 다 안다 박정희 새마을 사업 한다고 국민을 강제로 부역 시키고 부역 시킨 인건비 안주나 ~??"}'
+# d = literal_eval(x)
+# txt = d['category']+'  '+utils.normalize_text(d['title'])+'  '+d['content']
+# # if '[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]' in txt:
 
-print(txt.replace('[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]', ""))
+# print(txt.replace('[본 게시물의 일부 내용이 국민 청원 요건에 위배되어 관리자에 의해 수정되었습니다]', ""))
 
 
+
+
+
+
+import re
+
+
+text='a539 ㅁ1aㅁ 육아B/교육  기간제 교사, 영어회화 강사, 스포츠 강사의 정규직화를 반대합니다. 교육현장의 목소리 좀 들어주세요!  현직교사입니다. 일단 교육 현장에서는 영어회화 전문강사, 스포츠 강사가 필요없습니다. 현장에서 영어심화연수로 우수한 능력을 갖춘 교사들이 많습니다. 이 분들이 강사보다 더 영어 수업 잘하십니다. 현재 영어강사때문에 수업을 빼앗겨있는 굉장한 교육피해상황입니다. 임용고사를 통과한 우수한 정식교사들이 많이 있음에도 강사들에게 수업을 맡겨야만 하는 분명한 근거가 있는지요? 자신의 자녀들에게 강사가 영어를 교육하는 것에 대해 학부모님들도, 학생들도 싫어한다는 것을 정부가 아시는지요? 현장의 목소리를 들어보셨나요????????? 학부모의 의견도 들어보시고, 교육 수요자인 학생의 의견도 들어주십시오. 지금 이 청원도 있는지 몰라 헤메이다가 힘들게 알고 들어왔습니다. 뉴스나 방송으로 반드시 이 문제를 공론화 하여 전 국민이 알고 있는 상태에서 현장의 목소리를 들어주십시오. 임용고사를 보기 위해 10년간 임용고시를 준비하여 피땀흘린 젊음의 세월을 물거품으로 만들지 마십시오. 우리 나라는 공정한 기회(임용고시)가 있는 나라입니다. 임용고시를 통과한 우수한 교사가 교단에 서는 것이 공교육의 질을 확보할 수 있다는 것을 명심해주십시오. 실컷 놀다가 임용고사 볼 생각안하고 돈버려고 기간제 했던 사람들의 정규직화를 추진하는 이유를 도저히 이해하려해도 할 수가 없습니다. 문재인 대통령을 뽑은 것을 후회합니다. 이런식으로의 무임승차, 불공정 사회, 제 2의 정유라를 무더기로 낙하산 채용하는 것은 정의를 파괴하는 일입니다.'
+test = re.compile(r'[^가-힣a-zA-Z0-9\s]+')
+
+
+text = test.sub('', text)
+
+
+
+print(text)
