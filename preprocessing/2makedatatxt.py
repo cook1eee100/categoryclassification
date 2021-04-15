@@ -33,9 +33,9 @@ for idx, text in enumerate(txtList):
     lenList.append(len(text.split()))
 
 
-
+# 단어로 할 경우
 # rangeList 최소값, 1사분위값, 2사분위값, 3사분위값, 최대값, 사용할 데이터 시작, 사용할 데이터 끝
-rangeList=[0,25,50,75,100, 5, 95]
+rangeList=[0,25,50,75,100, 10, 90]
 qValue=np.percentile(lenList, rangeList, interpolation='nearest')
 
 ratio=rangeList[6]-rangeList[5]
@@ -55,7 +55,7 @@ plt.show()
 tList=[]
 for idx in range(len(lenList)):
     if qValue[5]<= lenList[idx] <=qValue[6]:
-        tList.append(txtList[idx])
+        tList.append(utils.normalize_text(txtList[idx]))
 
 print(f"전체 데이터 개수(게시글 수) : {len(txtList)}, 사용 할 데이터 비율 : {ratio}%, 사용 할 데이터 개수 : {len(tList)}")
 
